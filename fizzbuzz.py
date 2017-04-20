@@ -24,7 +24,7 @@ def fizzbuzz_ifs(n):
             out.append(str(i))
     return out
 
-def fizzbuzz_ifs(n):
+def fizzbuzz_inline_for(n):
     """
     Pythonic solution using inline for to create list
     Note that "None or value" means if None/False, then y thus it works
@@ -58,4 +58,5 @@ if __name__ == '__main__':
         "FizzBuzz"
     ]
     """
-    print()
+    print(fizzbuzz_ifs(15))
+    print(fizzbuzz_inline_for(15))
