@@ -9,6 +9,7 @@ If it does not exist, output -1 for this number.
 """
 from collections import deque
 
+
 def next_greater_element_brute(findNums, nums):
     """
     Brute force method to find next greater element by linear searching every time for next greater element
@@ -40,7 +41,7 @@ def next_greater_element_stack(findNums, nums):
     :rtype: List[int]
     """
     # Setup dictionary
-    stack = []
+    stack = deque()
     dict = {}  # Since we know values are distinct, one value will have one greater element
     for value in nums:
         while len(stack) and stack[-1] < value:
