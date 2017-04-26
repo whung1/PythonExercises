@@ -46,7 +46,7 @@ def next_greater_element_stack(findNums, nums):
     """
     # Setup dictionary
     stack = deque()
-    dict = {}  # Since we know values are distinct, one value will have one greater element
+    dictionary = {}  # Since we know values are distinct, one value will have one greater element
     for value in nums:
         while len(stack) and stack[-1] < value:
             dict[stack.pop()] = value
@@ -55,8 +55,8 @@ def next_greater_element_stack(findNums, nums):
     # Iterate through findNums and using dictionary to search, create output list
     out_list = [-1] * len(findNums)
     for i in range(len(findNums)):
-        if findNums[i] in dict:
-            out_list[i] = dict[findNums[i]]
+        if findNums[i] in dictionary:
+            out_list[i] = dictionary[findNums[i]]
     return out_list
 
 
