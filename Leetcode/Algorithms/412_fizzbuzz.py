@@ -34,7 +34,7 @@ def fizzbuzz_inline_for(n):
     return ['Fizz' * (i % 3 == 0) + 'Buzz' * (i % 5 == 0) or str(i) for i in range(1, n+1)]
 
 if __name__ == '__main__':
-    descript = """
+    print("""
     Example:
 
     n = 15,
@@ -57,8 +57,7 @@ if __name__ == '__main__':
         "14",
         "FizzBuzz"
     ]
-    """
-    print(descript)
+    """)
 
     print(fizzbuzz_ifs(15))
     print(fizzbuzz_inline_for(15))

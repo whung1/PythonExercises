@@ -37,11 +37,7 @@ def max_depth_helper(node, depth):
     return left_depth if left_depth > right_depth else right_depth
 
 if __name__ == "__main__":
-    descript = """
-    Given a binary tree, find its maximum depth.
-
-    The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
-
+    print("""
     Example #1:
         Null Tree
         Output: 0
@@ -65,8 +61,7 @@ if __name__ == "__main__":
           /   \\
         4       5
         Output: 3
-    """
-    print(descript)
+    """)
 
     print(max_depth(None))  # Example #1
     ex_root = TreeNode(1)

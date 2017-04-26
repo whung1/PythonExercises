@@ -20,7 +20,7 @@ def findComplement(num):
     return num ^ mask
 
 if __name__ == "__main__":
-    descript = """
+    print("""
     Example 1:
         Input: 5
         Output: 2
@@ -30,8 +30,7 @@ if __name__ == "__main__":
         Input: 1
         Output: 0
     Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
-    """
-    print(descript)
+    """)
 
     print(findComplement(5))
     print(findComplement(1))

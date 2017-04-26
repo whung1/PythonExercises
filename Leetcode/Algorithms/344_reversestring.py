@@ -14,12 +14,9 @@ def reverseString(s):
 
 
 if __name__ == "__main__":
-    descript = """
-    Write a function that takes a string as input and returns the string reversed.
-
+    print("""
     Example:
         Given s = "hello", return "olleh".
-    """
-    print(descript)
+    """)
 
     print(reverseString('hello'))

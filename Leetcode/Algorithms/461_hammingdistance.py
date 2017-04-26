@@ -32,7 +32,7 @@ def hamming_distance_count(x, y):
     return bin(x ^ y).count('1')
 
 if __name__ == "__main__":
-    descript = """
+    print("""
     Input: x = 1, y = 4
 
     Output: 2
@@ -43,7 +43,7 @@ if __name__ == "__main__":
            ↑   ↑
 
     The above arrows point to positions where the corresponding bits are different.
-    """
+    """)
     print(descript)
 
     print(hamming_distance_kernighan(1, 4))

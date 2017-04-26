@@ -2,6 +2,10 @@
 https://leetcode.com/problems/keyboard-row
 
 Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+
+Note:
+    You may use one character in the keyboard more than once.
+    You may assume the input string will only contain letters of alphabet.
 """
 import re
 
@@ -44,19 +48,11 @@ def find_words_regex(words):
     return same_row_words
 
 if __name__ == "__main__":
-    descript = """
-    Given a List of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
-
-
+    print("""
     Example 1:
         Input: ["Hello", "Alaska", "Dad", "Peace"]
         Output: ["Alaska", "Dad"]
-    
-    Note:
-        You may use one character in the keyboard more than once.
-        You may assume the input string will only contain letters of alphabet.
-    """
-    print(descript)
+    """)
 
     print(find_words_sets(["Hello", "Alaska", "Dad", "Peace"]))
     print(find_words_regex(["Hello", "Alaska", "Dad", "Peace"]))
