@@ -1,0 +1,425 @@
+ there! Your coding challenge description is below. You are free to complete this
+
+ challenge at your own pace, but do not spend more than 90 minutes on this challenge.
+
+ Once complete, reply to the email you received the challenge from, and attach your code
+
+ as a zip file (please don’t attach executable files). Write down approximately how long
+
+ the solution took you. We'll review your solution and be in touch within a few days.
+
+ A few guidelines:
+
+ * Use any language you like, but please keep the final solution to less than three
+
+ files!
+
+ * Feel free to look up any language documentation online (but all code you write must
+
+ be your own, unless you document it otherwise).
+
+ * Feel free to use any standard library functions.
+
+ * If something in the problem description seems unclear, just make a choice that seems
+
+ reasonable to you, and document it.
+
+ We're looking for clean, readable, functional code, not just for 100% functional
+
+ solutions. If at the end of the 90 minutes you’re still trying to fix some small bugs,
+
+ that’s fine--just send it to us! We’re not looking for perfection.
+
+ ----------------------------------------------------------
+
+ Your challenge: implement 2-player blackjack
+
+ Blackjack is a card game played with a standard 52-card deck. Your job is to implement
+
+ a simple version of blackjack that could be played by 2 people sitting down at a
+
+ console.
+
+ You win at blackjack by having the best "hand" (your collection of cards). The goal is
+
+ to get the value of your hand as close to 21 points as you can, without going over 21.
+
+ If you go over 21 points, you're "busted", and lose the game.
+
+ Rules about scoring:
+
+ * A number card is worth as many points as its number (e.g. an 8 of hearts is worth 8
+
+ points)
+
+ * A face card (i.e. jack, queen, or king) is worth 10 points.
+
+ * An ace is worth either 11 points or 1 point (whichever is better for the player).
+
+ This is calculated on-the-fly; in other words, the value of an ace can start as 11,
+
+ then change to 1 once the player has more cards.
+
+ Some example hands:
+
+ * 9, 9, and 4: 9 + 9 + 4 => 22 points (busted)
+
+ * ace and queen: 11 + 10 => 21 points (perfect score)
+
+ * ace, ace, and 7: 11 + 1 + 7 => 19 points
+
+ Game play:
+
+ * At the beginning of the game, each player is dealt 2 cards
+
+ * After that, for each round, each player can choose to "hit" (take another card) or
+
+ "stay" (stop taking cards). Use user input to determine whether each player should hit
+
+ or stay. (Prompting the user for text input is fine.)
+
+ * Once a player stays or busts, that player is done playing. When all players are done,
+
+ the game ends and whichever player has the best score wins.
+
+ * Note: to deal cards to players, simulate drawing cards from a shuffled standard deck,
+
+ without replacement.
+
+ A few simplifications:
+
+ * Don't worry about representing suits. Representing cards as integers is fine.
+
+ * Don't worry about making the UI impressive. Go ahead and just use basic text input
+
+ and output.
+
+ * Don’t worry about supporting multiple rounds. If your program executes a single round
+
+ of blackjack when it’s run, that’s fine.
+
+ * For reference, a standard deck consists of four of each of the following cards: 2, 3,
+
+ 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
+
+ -------------------------------------------------------
+
+ Good luck!Hi there! Your coding challenge description is below. You are free to complete this
+
+ challenge at your own pace, but do not spend more than 90 minutes on this challenge.
+
+ Once complete, reply to the email you received the challenge from, and attach your code
+
+ as a zip file (please don’t attach executable files). Write down approximately how long
+
+ the solution took you. We'll review your solution and be in touch within a few days.
+
+ A few guidelines:
+
+ * Use any language you like, but please keep the final solution to less than three
+
+ files!
+
+ * Feel free to look up any language documentation online (but all code you write must
+
+ be your own, unless you document it otherwise).
+
+ * Feel free to use any standard library functions.
+
+ * If something in the problem description seems unclear, just make a choice that seems
+
+ reasonable to you, and document it.
+
+ We're looking for clean, readable, functional code, not just for 100% functional
+
+ solutions. If at the end of the 90 minutes you’re still trying to fix some small bugs,
+
+ that’s fine--just send it to us! We’re not looking for perfection.
+
+ ----------------------------------------------------------
+
+ Your challenge: implement 2-player blackjack
+
+ Blackjack is a card game played with a standard 52-card deck. Your job is to implement
+
+ a simple version of blackjack that could be played by 2 people sitting down at a
+
+ console.
+
+ You win at blackjack by having the best "hand" (your collection of cards). The goal is
+
+ to get the value of your hand as close to 21 points as you can, without going over 21.
+
+ If you go over 21 points, you're "busted", and lose the game.
+
+ Rules about scoring:
+
+ * A number card is worth as many points as its number (e.g. an 8 of hearts is worth 8
+
+ points)
+
+ * A face card (i.e. jack, queen, or king) is worth 10 points.
+
+ * An ace is worth either 11 points or 1 point (whichever is better for the player).
+
+ This is calculated on-the-fly; in other words, the value of an ace can start as 11,
+
+ then change to 1 once the player has more cards.
+
+ Some example hands:
+
+ * 9, 9, and 4: 9 + 9 + 4 => 22 points (busted)
+
+ * ace and queen: 11 + 10 => 21 points (perfect score)
+
+ * ace, ace, and 7: 11 + 1 + 7 => 19 points
+
+ Game play:
+
+ * At the beginning of the game, each player is dealt 2 cards
+
+ * After that, for each round, each player can choose to "hit" (take another card) or
+
+ "stay" (stop taking cards). Use user input to determine whether each player should hit
+
+ or stay. (Prompting the user for text input is fine.)
+
+ * Once a player stays or busts, that player is done playing. When all players are done,
+
+ the game ends and whichever player has the best score wins.
+
+ * Note: to deal cards to players, simulate drawing cards from a shuffled standard deck,
+
+ without replacement.
+
+ A few simplifications:
+
+ * Don't worry about representing suits. Representing cards as integers is fine.
+
+ * Don't worry about making the UI impressive. Go ahead and just use basic text input
+
+ and output.
+
+ * Don’t worry about supporting multiple rounds. If your program executes a single round
+
+ of blackjack when it’s run, that’s fine.
+
+ * For reference, a standard deck consists of four of each of the following cards: 2, 3,
+
+ 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
+
+ -------------------------------------------------------
+
+ Good luck!Hi there! Your coding challenge description is below. You are free to complete this
+
+ challenge at your own pace, but do not spend more than 90 minutes on this challenge.
+
+ Once complete, reply to the email you received the challenge from, and attach your code
+
+ as a zip file (please don’t attach executable files). Write down approximately how long
+
+ the solution took you. We'll review your solution and be in touch within a few days.
+
+ A few guidelines:
+
+ * Use any language you like, but please keep the final solution to less than three
+
+ files!
+
+ * Feel free to look up any language documentation online (but all code you write must
+
+ be your own, unless you document it otherwise).
+
+ * Feel free to use any standard library functions.
+
+ * If something in the problem description seems unclear, just make a choice that seems
+
+ reasonable to you, and document it.
+
+ We're looking for clean, readable, functional code, not just for 100% functional
+
+ solutions. If at the end of the 90 minutes you’re still trying to fix some small bugs,
+
+ that’s fine--just send it to us! We’re not looking for perfection.
+
+ ----------------------------------------------------------
+
+ Your challenge: implement 2-player blackjack
+
+ Blackjack is a card game played with a standard 52-card deck. Your job is to implement
+
+ a simple version of blackjack that could be played by 2 people sitting down at a
+
+ console.
+
+ You win at blackjack by having the best "hand" (your collection of cards). The goal is
+
+ to get the value of your hand as close to 21 points as you can, without going over 21.
+
+ If you go over 21 points, you're "busted", and lose the game.
+
+ Rules about scoring:
+
+ * A number card is worth as many points as its number (e.g. an 8 of hearts is worth 8
+
+ points)
+
+ * A face card (i.e. jack, queen, or king) is worth 10 points.
+
+ * An ace is worth either 11 points or 1 point (whichever is better for the player).
+
+ This is calculated on-the-fly; in other words, the value of an ace can start as 11,
+
+ then change to 1 once the player has more cards.
+
+ Some example hands:
+
+ * 9, 9, and 4: 9 + 9 + 4 => 22 points (busted)
+
+ * ace and queen: 11 + 10 => 21 points (perfect score)
+
+ * ace, ace, and 7: 11 + 1 + 7 => 19 points
+
+ Game play:
+
+ * At the beginning of the game, each player is dealt 2 cards
+
+ * After that, for each round, each player can choose to "hit" (take another card) or
+
+ "stay" (stop taking cards). Use user input to determine whether each player should hit
+
+ or stay. (Prompting the user for text input is fine.)
+
+ * Once a player stays or busts, that player is done playing. When all players are done,
+
+ the game ends and whichever player has the best score wins.
+
+ * Note: to deal cards to players, simulate drawing cards from a shuffled standard deck,
+
+ without replacement.
+
+ A few simplifications:
+
+ * Don't worry about representing suits. Representing cards as integers is fine.
+
+ * Don't worry about making the UI impressive. Go ahead and just use basic text input
+
+ and output.
+
+ * Don’t worry about supporting multiple rounds. If your program executes a single round
+
+ of blackjack when it’s run, that’s fine.
+
+ * For reference, a standard deck consists of four of each of the following cards: 2, 3,
+
+ 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
+
+ -------------------------------------------------------
+
+ Good luck!Hi there! Your coding challenge description is below. You are free to complete this
+
+ challenge at your own pace, but do not spend more than 90 minutes on this challenge.
+
+ Once complete, reply to the email you received the challenge from, and attach your code
+
+ as a zip file (please don’t attach executable files). Write down approximately how long
+
+ the solution took you. We'll review your solution and be in touch within a few days.
+
+ A few guidelines:
+
+ * Use any language you like, but please keep the final solution to less than three
+
+ files!
+
+ * Feel free to look up any language documentation online (but all code you write must
+
+ be your own, unless you document it otherwise).
+
+ * Feel free to use any standard library functions.
+
+ * If something in the problem description seems unclear, just make a choice that seems
+
+ reasonable to you, and document it.
+
+ We're looking for clean, readable, functional code, not just for 100% functional
+
+ solutions. If at the end of the 90 minutes you’re still trying to fix some small bugs,
+
+ that’s fine--just send it to us! We’re not looking for perfection.
+
+ ----------------------------------------------------------
+
+ Your challenge: implement 2-player blackjack
+
+ Blackjack is a card game played with a standard 52-card deck. Your job is to implement
+
+ a simple version of blackjack that could be played by 2 people sitting down at a
+
+ console.
+
+ You win at blackjack by having the best "hand" (your collection of cards). The goal is
+
+ to get the value of your hand as close to 21 points as you can, without going over 21.
+
+ If you go over 21 points, you're "busted", and lose the game.
+
+ Rules about scoring:
+
+ * A number card is worth as many points as its number (e.g. an 8 of hearts is worth 8
+
+ points)
+
+ * A face card (i.e. jack, queen, or king) is worth 10 points.
+
+ * An ace is worth either 11 points or 1 point (whichever is better for the player).
+
+ This is calculated on-the-fly; in other words, the value of an ace can start as 11,
+
+ then change to 1 once the player has more cards.
+
+ Some example hands:
+
+ * 9, 9, and 4: 9 + 9 + 4 => 22 points (busted)
+
+ * ace and queen: 11 + 10 => 21 points (perfect score)
+
+ * ace, ace, and 7: 11 + 1 + 7 => 19 points
+
+ Game play:
+
+ * At the beginning of the game, each player is dealt 2 cards
+
+ * After that, for each round, each player can choose to "hit" (take another card) or
+
+ "stay" (stop taking cards). Use user input to determine whether each player should hit
+
+ or stay. (Prompting the user for text input is fine.)
+
+ * Once a player stays or busts, that player is done playing. When all players are done,
+
+ the game ends and whichever player has the best score wins.
+
+ * Note: to deal cards to players, simulate drawing cards from a shuffled standard deck,
+
+ without replacement.
+
+ A few simplifications:
+
+ * Don't worry about representing suits. Representing cards as integers is fine.
+
+ * Don't worry about making the UI impressive. Go ahead and just use basic text input
+
+ and output.
+
+ * Don’t worry about supporting multiple rounds. If your program executes a single round
+
+ of blackjack when it’s run, that’s fine.
+
+ * For reference, a standard deck consists of four of each of the following cards: 2, 3,
+
+ 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
+
+ -------------------------------------------------------
+
+ Good luck!
