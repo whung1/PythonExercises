@@ -28,6 +28,7 @@ def construct_rectangle_L(area):
     while L < area:
         if area % L == 0:
             return [L, int(area / L)]
+        L += 1
     return [None, None]
 
 def construct_rectangle_W(area):
