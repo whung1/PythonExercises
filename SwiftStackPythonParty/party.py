@@ -79,16 +79,16 @@ class EmployeeTree:
     Representation of the employees at a place where nodes' parents are bosses, and children
     are subordinates.
     """
-    def __init__(self, json_list):
+    def __init__(self, employee_list):
         """
         Create tree of subordinates to bosses
-        :param json_list: list of dicts of keys 'name', 'boss', 'party-animal-score' (See sample.json)
+        :param employee_list: list of dicts of keys 'name', 'boss', 'party-animal-score' (See sample.json)
         """
         self.root = None
         self.party_list = []
         # Populate Tree with Nodes
-        nodes = dict((p['name'], EmployeeNode(p)) for p in json_list)
-        for p in json_list:
+        nodes = dict((p['name'], EmployeeNode(p)) for p in employee_list)
+        for p in employee_list:
             if p['boss'] is not None:
                 nodes[p['boss']].add_child(nodes[p['name']])
             else:  # has no boss = is root / CEO
@@ -100,12 +100,13 @@ class EmployeeTree:
         :return: List of invited members to party maximizing party-animal-score
         """
         self.party_list = []
-        if ceo_required:
-            self.root.inclusive = True  # To get required CEO, just ensure they are included by flag
-        else:
-            self.root.inclusive = None  # In case we need to reset flag on subsequent usage
-        # TODO(wilson): change return to something more functional paradigm-esque while ensuring tail recursion
-        self.__populate_party_list(self.root)
+        if self.root is not None:
+            if ceo_required:
+                self.root.inclusive = True  # To get required CEO, just ensure they are included by flag
+            else:
+                self.root.inclusive = None  # In case we need to reset flag on subsequent usage
+            # TODO(wilson): change return to something more functional paradigm-esque while ensuring tail recursion
+            self.__populate_party_list(self.root)
         return self.party_list
 
     def __populate_party_list(self, n):
