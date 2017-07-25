@@ -7,7 +7,7 @@ from collections import deque
 class TrieNode:
     def __init__(self, val=None, end_data=None):
         self.val = val
-        self.end = end_data  # Metadata storage if required at the end of a Trie
+        self.end = end_data  # Metadata storage if required, signaling end
         self.children = dict()
 
     def add_child(self, child):
@@ -17,6 +17,7 @@ class TrieNode:
 class Trie:
     def __init__(self):
         self.root = TrieNode('')
+        self.cur = self.root
 
     def insert_words(self, words):
         for word in words:
@@ -30,9 +31,16 @@ class Trie:
             else:
                 cur.add_child(TrieNode(letter))
                 cur = cur.children[letter]
-        cur.data = word  # Insert complete word at the end to indicate end and give access to word at end of traversal
+        # Insert complete word at the end to indicate end and
+        # give access to word at end of traversal
+        cur.data = word
 
     def search(self, word):
+        """
+        Checks if word is in the Trie, searching from the root of the Trie
+        :param word: Word to try to find in Trie
+        :return: True if in Trie, False otherwise
+        """
         cur = self.root
         for letter in word:
             if letter not in cur.children.keys():
@@ -41,32 +49,35 @@ class Trie:
             return True
         return False
 
-    @staticmethod
-    def traverse_to(start, prefix):
-        if start is None or not isinstance(start, TrieNode):
-            raise ValueError  # Assumption that start is a valid Trie is false
-        cur = start
-        for letter in prefix:
+    def traverse_to(self, suffix):
+        """
+        Traverses from current position of the Trie to ones of prefix
+        :param suffix: The rest of letters to to traverse up to in the Trie
+        :return: Current TrieNode the Trie is on
+        """
+        cur = self.cur
+        for letter in suffix:
             if letter not in cur.children.keys():
-                raise ValueError  # Assumption that prefix is in tree is False
+                raise ValueError  # Assumption that suffix is in tree is False
             cur = cur.children[letter]
-        return cur
+        self.cur = cur  # Update current node of Trie
+        return self.cur
 
-    @staticmethod
-    def get_words(start):
+    def get_words(self):
         """
         Traverses a Trie from start to get all words possible in the Trie
-        via BFS and returns them sorted by length
-        :param start: origin TrieNode
-        :return:
-        """
-        if start is None or not isinstance(start, TrieNode):
-            raise ValueError  # Assumption that start is a valid Trie is false
+        from its current position via BFS
 
+        :param start: origin TrieNode
+        :return: List of tuples of (word, distance) where
+        word is a completed word in the Trie
+                    sorted from least to greatest in distance
+                    from current Trie position
+        """
         queue = deque()
         words = []
 
-        queue.append((start, 0))
+        queue.append((self.cur, 0))
         while queue:
             cur, cur_step = queue.pop()
             if cur:
@@ -75,4 +86,3 @@ class Trie:
                 for child in cur.children:
                     queue.append((child, cur_step + 1))
         return words
-
