@@ -1,5 +1,5 @@
-from player import Player
-from deck import Deck
+from BlackjackExample.player import Player
+from BlackjackExample.deck import Deck
 
 
 class Blackjack():
