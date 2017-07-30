@@ -11,13 +11,16 @@ class TrieNode:
         self.children = dict()
 
     def add_child(self, child):
-        self.children[child.name] = child
+        self.children[child.val] = child
+
+    def get_children(self):
+        return [node for node in self.children.values()]
 
 
 class Trie:
     def __init__(self):
         self.root = TrieNode('')
-        self.cur = self.root
+        self.cur = self.root  # Current position in the Trie
 
     def insert_words(self, words):
         for word in words:
@@ -33,7 +36,7 @@ class Trie:
                 cur = cur.children[letter]
         # Insert complete word at the end to indicate end and
         # give access to word at end of traversal
-        cur.data = word
+        cur.end = word
 
     def search(self, word):
         """
@@ -66,7 +69,7 @@ class Trie:
     def get_words(self):
         """
         Traverses a Trie from start to get all words possible in the Trie
-        from its current position via BFS
+        from its current position (self.cur) via BFS
 
         :param start: origin TrieNode
         :return: List of tuples of (word, distance) where
@@ -81,8 +84,35 @@ class Trie:
         while queue:
             cur, cur_step = queue.pop()
             if cur:
-                if cur.data is not None:
-                    words.append((cur.data, cur_step))
-                for child in cur.children:
+                if cur.end is not None:
+                    words.append((cur, cur_step))
+                for child in cur.children.values():
                     queue.append((child, cur_step + 1))
         return words
+
+    def get_next_nodes(self):
+        """
+        Return the children nodes of current node in tree
+        :return:
+        """
+        return self.cur.get_children()
+
+    def get_next_values(self):
+        """
+        Gets the current node's children values
+        :return:
+        """
+        return [letter for letter in self.cur.children.keys()]
+
+    def reset(self):
+        """
+        Resets the current position of the Trie back to the root
+        :return:
+        """
+        self.cur = self.root
+
+    def is_leaf(self):
+        """
+        :return: True if current node is leaf node, False otherwise
+        """
+        return True if not self.cur.children and self.cur.end else False

@@ -1,7 +1,5 @@
-# BlackjackExample
+# Optimal Ghost
 Optimal Ghost coded in Python for TapSense's coding problem
-
-*Optimal Ghost*
 
 In the game of Ghost , two
 players take turns building up an English word from left to right. Each
