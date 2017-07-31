@@ -90,6 +90,7 @@ class Trie:
                     queue.append((child, cur_step + 1))
         return words
 
+    # Wrapper functions to hide local variables
     def get_next_nodes(self):
         """
         Return the children nodes of current node in tree

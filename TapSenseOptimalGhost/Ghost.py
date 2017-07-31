@@ -8,19 +8,10 @@ from TapSenseOptimalGhost.Player import Player
 
 class GhostGame:
     def __init__(self):
-        """
-        :param words:
-        """
         self.game_state = Trie()
         self.players = []
-
-    def initialize(self, words):
-        self.game_state.insert_words(words)
         self.players.append(Player("Player 1", self.game_state))
         self.players.append(ComputerPlayer("Computer 1", self.game_state))
-
-    def get_legal_moves(self):
-        return self.game_state.get_next_values()
 
     def execute_game(self):
         if self.is_over():
@@ -45,6 +36,13 @@ class GhostGame:
                     self.game_state.reset()
                     break
 
+    # Wrapper functions for implementation of game_state
+    def add_word_list(self, words):
+        self.game_state.insert_words(words)
+
+    def get_legal_moves(self):
+        return self.game_state.get_next_values()
+
     def execute_move(self, next_letter):
         return self.game_state.traverse_to(next_letter)
 
@@ -54,5 +52,5 @@ class GhostGame:
 if __name__ == '__main__':
     ghost = GhostGame()
     with open('WORD_LIST.txt', 'r') as f:
-        ghost.initialize(f.read().split())
+        ghost.add_word_list(f.read().split())
     ghost.execute_game()
