@@ -10,7 +10,7 @@ class GhostGame:
     def __init__(self):
         self.game_state = Trie()
         self.players = []
-        self.players.append(ComputerPlayer("Player 1", self.game_state))
+        self.players.append(Player("Player 1", self.game_state))
         self.players.append(ComputerPlayer("Computer 1", self.game_state))
 
     def execute_game(self):
