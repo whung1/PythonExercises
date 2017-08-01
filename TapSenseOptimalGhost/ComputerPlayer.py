@@ -56,7 +56,7 @@ class ComputerPlayer:
         """
         next_moves = {}
         for node in self.game_state.get_next_nodes():
-            next_moves[node.val] = self.__calculate_next_move(node, 0)
+            next_moves[node.val] = self.__calculate_next_move(node, 1)
         return next_moves
 
     def __calculate_next_move(self, node, distance):
@@ -67,11 +67,12 @@ class ComputerPlayer:
         :param node: TrieNode
         :return: move_state, distance
         """
-        if not node.children:
-            if distance < 4:  # If completed word less than 4, does not count for Ghost rules
-                return 0, distance
+        # Word cannot be extended any more or if word length is greater than 4 and completed = end of game
+        if not node.children or node.distance > 4 and node.end:
+            if node.distance > 4 and node.end:
+                return 1 if distance % 2 == 0 else -1, distance  # Even distance = win, Odd distance = loss
             else:
-                return -1 if distance % 2 == 0 else 1, distance  # Even distance = loss, Odd distance = win
+                return None, distance  # Word length is not greater than 4, will be "tie"
 
         move_state = None
         max_distance = distance

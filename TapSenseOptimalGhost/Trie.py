@@ -5,8 +5,9 @@ from collections import deque
 
 
 class TrieNode:
-    def __init__(self, val=None, end_data=None):
-        self.val = val
+    def __init__(self, val=None, distance=-1, end_data=None):
+        self.val = val  # Data of this node
+        self.distance = distance  # depth/distance from root
         self.end = end_data  # Metadata storage if required, signaling end
         self.children = dict()
 
@@ -19,7 +20,7 @@ class TrieNode:
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode('')
+        self.root = TrieNode('', 0)
         self.cur = self.root  # Current position in the Trie
 
     def insert_words(self, words):
@@ -32,7 +33,7 @@ class Trie:
             if letter in cur.children.keys():
                 cur = cur.children[letter]
             else:
-                cur.add_child(TrieNode(letter))
+                cur.add_child(TrieNode(letter, cur.distance+1))
                 cur = cur.children[letter]
         # Insert complete word at the end to indicate end and
         # give access to word at end of traversal
