@@ -18,27 +18,20 @@ class ComputerPlayer:
         # Get all possible words sorted by distance from least
         # from current location, O(log n)
         possible_moves = self.calculate_next_moves()
-        # Sort possible moves by winning, losing, and unknown
+        # Sort possible moves by winning and losing
         winning_moves = []
         losing_moves = []
-        unknown_moves = []
         for letter, values in possible_moves.items():
             move_state, distance = values
             if move_state == 1:
                 winning_moves.append(letter)
             if move_state == -1:
                 losing_moves.append((letter, distance))
-            else:
-                unknown_moves.append(letter)
 
         # If the computer thinks it will win, it
         # should play randomly among all its winning moves
         if winning_moves:
             return random.choice(winning_moves)
-        # NOTE: No documentation for choosing when there is
-        # non-losing choice, assume random
-        if unknown_moves:
-            return random.choice(unknown_moves)
         # If the computer thinks it will lose
         # it should play so as to extend the game as long as possible
         # (choosing randomly among choices that force the maximal
@@ -50,12 +43,12 @@ class ComputerPlayer:
     def calculate_next_moves(self):
         """
         Checks all the next possible moves and calculates whether its a
-        sure win (1), unsure (0), or sure loss (-1),
+        sure win (1) or sure loss (-1),
         along with the max depth
 
         :return: Dictionary of letters as key
                     with (win_check, distance) as values
-                    where win_check = 1 if win, 0 if unsure, -1 if loss
+                    where win_check = 1 if win and -1 if loss
         """
         next_moves = {}
         for node in self.game_state.get_next_nodes():
@@ -89,7 +82,5 @@ class ComputerPlayer:
             max_distance = (cur_max_distance
                             if cur_max_distance > max_distance
                             else max_distance)
-            move_state = (cur_state
-                          if move_state is None or move_state == cur_state
-                          else 0)
+            move_state = -1 if move_state == -1 else cur_state
         return move_state, max_distance
