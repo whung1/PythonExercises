@@ -35,7 +35,7 @@ class GhostGame:
                     print("{0} loses".format(cur_player.name))
                     print("Word is {0}".format(self.game_state.cur.end))
                     self.game_state.reset()
-                    #if cur_player.name == 'Computer 1':
+                    # if cur_player.name == 'Computer 1':
                     #    stop = True
                     break
 
@@ -50,10 +50,15 @@ class GhostGame:
         return self.game_state.traverse_to(next_letter)
 
     def is_over(self):
-        return self.game_state.is_leaf() or self.game_state.cur.distance > 5 and self.game_state.cur.end
+        return (self.game_state.is_leaf()
+                or self.game_state.cur.distance > 5
+                and self.game_state.cur.end)
 
     def print_over_message(self):
-        self.game_state.is_leaf() or self.game_state.cur.distance > 5 and self.game_state.cur.end
+        (self.game_state.is_leaf()
+         or self.game_state.cur.distance > 5
+         and self.game_state.cur.end)
+
 
 if __name__ == '__main__':
     ghost = GhostGame()
