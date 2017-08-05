@@ -1,20 +1,18 @@
 """
 Game of Ghost
 """
-from TapSenseOptimalGhost.Trie import Trie
-from TapSenseOptimalGhost.ComputerPlayer import ComputerPlayer
-from TapSenseOptimalGhost.Player import Player
+from Trie import Trie
+from ComputerPlayer import ComputerPlayer
+from Player import Player
 
 
 class GhostGame:
     def __init__(self):
         self.game_state = Trie()
         self.players = []
-        self.players.append(Player("Player 1", self.game_state))
-        self.players.append(ComputerPlayer("Computer 1", self.game_state))
 
     def execute_game(self):
-        if self.is_over():
+        if self.is_over() or not self.players:
             raise ValueError
 
         stop = False
@@ -32,16 +30,19 @@ class GhostGame:
                 self.execute_move(next_letter)
                 # Check lose condition before next turn
                 if self.is_over():
-                    print("{0} loses".format(cur_player.name))
-                    print("Word is {0}".format(self.game_state.cur.end))
-                    self.game_state.reset()
-                    # if cur_player.name == 'Computer 1':
-                    #    stop = True
+                    self.print_over_message(cur_player)
+                    self.restart_round()
                     break
 
-    # Wrapper functions for implementation of game_state
+    # Wrapper functions for hiding implementation details of game_state
     def add_word_list(self, words):
         self.game_state.insert_words(words)
+
+    def add_player(self, name):
+        self.players.append(Player(name, self.game_state))
+
+    def add_computer(self, name):
+        self.players.append(ComputerPlayer(name, self.game_state))
 
     def get_legal_moves(self):
         return self.game_state.get_next_values()
@@ -54,14 +55,26 @@ class GhostGame:
                 or self.game_state.cur.distance > 5
                 and self.game_state.cur.end)
 
-    def print_over_message(self):
-        (self.game_state.is_leaf()
-         or self.game_state.cur.distance > 5
-         and self.game_state.cur.end)
+    def print_over_message(self, cur_player):
+        if ((self.game_state.is_leaf()
+             or self.game_state.cur.distance > 5)
+                and self.game_state.cur.end):
+            # Standard End
+            print("{0} loses".format(cur_player.name))
+        else:
+            print("Tie")
+        print("Word is {0}".format(self.game_state.cur.end))
+
+    def restart_round(self):
+        print("Restarting Round...")
+        self.game_state.reset()
 
 
 if __name__ == '__main__':
     ghost = GhostGame()
-    with open('WORD_LIST_b.txt', 'r') as f:
+    print("Insert dictionary filepath:")
+    with open(input(), 'r') as f:
         ghost.add_word_list(f.read().split())
+    ghost.add_player('Player 1')
+    ghost.add_computer('Computer 1')
     ghost.execute_game()
