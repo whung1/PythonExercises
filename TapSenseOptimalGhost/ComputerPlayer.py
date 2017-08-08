@@ -22,11 +22,11 @@ class ComputerPlayer:
         winning_moves = []
         losing_moves = []
         for letter, values in possible_moves.items():
-            move_state, distance = values
+            move_state, min_d_lose = values
             if move_state == 1:
                 winning_moves.append(letter)
             if move_state == -1:
-                losing_moves.append((letter, distance))
+                losing_moves.append((letter, min_d_lose))
 
         # If the computer thinks it will win, it
         # should play randomly among all its winning moves
@@ -36,8 +36,9 @@ class ComputerPlayer:
         # it should play so as to extend the game as long as possible
         # (choosing randomly among choices that force the maximal
         # game length).
-        maximal_distance = max(d for l, d in losing_moves)
-        maximal_choices = [l for l, d in losing_moves if d == maximal_distance]
+        best_min_d = max(min_d for l, min_d in losing_moves)
+        maximal_choices = [l for l, min_d in losing_moves if (
+            min_d == best_min_d)]
         return random.choice(maximal_choices)
 
     def calculate_next_moves(self):
@@ -53,9 +54,10 @@ class ComputerPlayer:
         next_moves = {}
         for node in self.game_state.get_next_nodes():
             next_moves[node.val] = self.__calculate_next_move(node, 1)
+        print(next_moves)
         return next_moves
 
-    def __calculate_next_move(self, node, distance):
+    def __calculate_next_move(self, node, min_d):
         """
         Helper function for calculate next move.
 
@@ -63,24 +65,21 @@ class ComputerPlayer:
         :param node: TrieNode
         :return: move_state, distance
         """
-        # Word cannot be extended any more or if word length
-        # is greater than 4 and completed = end of game
-        if not node.children or node.distance > 4 and node.end:
-            if node.distance > 4 and node.end:
-                # Even distance = win, Odd distance = loss
-                return 1 if distance % 2 == 0 else -1, distance
-            else:
-                # Word length is not greater than 4, will be "tie"
-                return None, distance
+        if not node.children and node.end:
+            # Even distance = win, Odd distance = loss
+            return 1 if min_d % 2 == 0 else -1, min_d
 
         move_state = None
-        max_distance = distance
+        min_distance = None
         # Traverse through children nodes DFS
         for child in node.get_children():
-            cur_state, cur_max_distance = self.__calculate_next_move(
-                child, distance+1)
-            max_distance = (cur_max_distance
-                            if cur_max_distance > max_distance
-                            else max_distance)
+            cur_state, cur_min_distance = self.__calculate_next_move(
+                child, min_d+1)
+            if (cur_state is -1 and
+                    (min_distance is None or
+                     min_distance > cur_min_distance)):
+                min_distance = cur_min_distance
+            # Assume optimal play, thus -1 for lose if there is any
+            # path already that is a loss
             move_state = -1 if move_state == -1 else cur_state
-        return move_state, max_distance
+        return move_state, min_distance
