@@ -35,8 +35,17 @@ class GhostGame:
                     break
 
     # Wrapper functions for hiding implementation details of game_state
+
     def add_word_list(self, words):
-        self.game_state.insert_words(words)
+        # Ghost rules state that only words with lengths
+        # 4 or more does count towards the game
+        # Thus we proactively prune them based on length
+        for word in words:
+            if len(word) > 3:
+                # Rely on Trie to proactively prune words that will end
+                # the game ahead of time to allow us only to rely on leaf
+                # nodes in the future as game ending words
+                self.game_state.insert_word(word, prune=True)
 
     def add_player(self, name):
         self.players.append(Player(name, self.game_state))
@@ -51,18 +60,10 @@ class GhostGame:
         return self.game_state.traverse_to(next_letter)
 
     def is_over(self):
-        return (self.game_state.is_leaf()
-                or self.game_state.cur.distance > 5
-                and self.game_state.cur.end)
+        return (self.game_state.is_leaf() and self.game_state.cur.end)
 
     def print_over_message(self, cur_player):
-        if ((self.game_state.is_leaf()
-             or self.game_state.cur.distance > 5)
-                and self.game_state.cur.end):
-            # Standard End
-            print("{0} loses".format(cur_player.name))
-        else:
-            print("Tie")
+        print("{0} loses".format(cur_player.name))
         print("Word is {0}".format(self.game_state.cur.end))
 
     def restart_round(self):

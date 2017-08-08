@@ -5,9 +5,8 @@ from collections import deque
 
 
 class TrieNode:
-    def __init__(self, val=None, distance=-1, end_data=None):
+    def __init__(self, val=None, end_data=None):
         self.val = val  # Data of this node
-        self.distance = distance  # depth/distance from root
         self.end = end_data  # Metadata storage if required, signaling end
         self.children = dict()
 
@@ -23,17 +22,20 @@ class Trie:
         self.root = TrieNode('', 0)
         self.cur = self.root  # Current position in the Trie
 
-    def insert_words(self, words):
-        for word in words:
-            self.insert_word(word)
-
-    def insert_word(self, word):
+    def insert_word(self, word, prune=False):
+        """
+        Inserts a word into the Trie.
+        :param prune: if True, ends the insert if a prefix of a word
+                        is already a completed word
+        """
         cur = self.root
         for letter in word:
             if letter in cur.children.keys():
                 cur = cur.children[letter]
             else:
-                cur.add_child(TrieNode(letter, cur.distance+1))
+                if prune is True and cur.end:
+                    return  # Stop early if prefix is in the tree
+                cur.add_child(TrieNode(letter))
                 cur = cur.children[letter]
         # Insert complete word at the end to indicate end and
         # give access to word at end of traversal
@@ -53,16 +55,17 @@ class Trie:
             return True
         return False
 
-    def traverse_to(self, suffix):
+    def traverse_to(self, prefix):
         """
         Traverses from current position of the Trie to ones of prefix
-        :param suffix: The rest of letters to to traverse up to in the Trie
+        :param prefix: The rest of letters to to traverse up to in the Trie
         :return: Current TrieNode the Trie is on
         """
         cur = self.cur
-        for letter in suffix:
+        for letter in prefix:
             if letter not in cur.children.keys():
-                raise ValueError  # Assumption that suffix is in tree is False
+                # Assumption that prefix is in tree is False
+                raise ValueError
             cur = cur.children[letter]
         self.cur = cur  # Update current node of Trie
         return self.cur
